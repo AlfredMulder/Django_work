@@ -14,8 +14,12 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
+#Подключение email- хоста
+email_host = 'smtp.gmail.com'
+email_host_user = 'your gmail email'
+email_host_password = 'your email password'
+email_port = '587'
+email_user_tls = True
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
