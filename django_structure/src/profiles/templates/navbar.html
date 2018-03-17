@@ -20,11 +20,16 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          Account
         </a>
+        <!-- Если пользователь авторизован- в навбаре будет отображаться только Logout -->
+        {% if not request.user.is_authenticated %}
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
+          <a class="dropdown-item" href="{% url 'account_signup' %}">Signup</a>
+          {% else %}
+          <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+          {% endif %}
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href='#'>What</a>
         </div>

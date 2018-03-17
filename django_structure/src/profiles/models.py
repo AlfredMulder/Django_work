@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-#Создание модели профиля пользователя.
+#Создание модели профиля пользователя админки.
 class Profile(models.Model):
     #Добавление новых полей: name, description, location, job.
     name = models.CharField(max_length=120)

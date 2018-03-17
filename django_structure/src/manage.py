@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-
+#Использованные библиотеки: allauth, crispy_forms.
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_structure.settings")
     try:
