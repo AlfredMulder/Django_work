@@ -43,6 +43,8 @@ class userStripe(models.Model):
         # Если ID системы stripe не существует, то используй email пользователя для его создания:
         if user_stripe_account.stripe_id is None or user_stripe_account.stripe_id == '':
             new_stripe_id = stripe.Customer.create(email = user.email)
+            user_stripe_account.stripe_id = new_stripe_id['id']
+            user_stripe_account.save()
 
     def profileCallback(sender, request, user, **kwargs):
         userProfile, is_created = profile.objects.get_or_create(user = user)
@@ -53,4 +55,5 @@ class userStripe(models.Model):
             userProfile.save()
 
     user_logged_in.connect(stripeCallback)
+    user_signed_up.connect(stripeCallback)
     user_signed_up.connect(profileCallback)

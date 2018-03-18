@@ -12,8 +12,8 @@
 {% block jumbotron %}
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-3">Fluid jumbotron</h1>
-    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    <h1 class="display-3">Welcome!</h1>
+    <p class="lead">"We believe that payments is a problem rooted in code, not finance. We obsessively seek out elegant, composable abstractions that enable robust, scalable, flexible integrations. Because we eliminate needless complexity and extraneous details, you can get up and running with Stripe in just a couple of minutes. "</p>
   </div>
 </div>
 {% endblock %}
@@ -25,11 +25,7 @@
     <p>Lorem</p>
     <p><button class="btn btn-default" href="#" role="button">View details</button></p>
   </div>
-  <div class="col-md-4">
-    <h2>lorem</h2>
-    <p>Lorem</p>
-    <p><button class="btn btn-default" href="#" role="button">View details</button></p>
-  </div>
+
   <div class="col-md-4">
     <!-- Если пользователь в сети, будет отображено его имя на домашней странице. Иначе произойдет переход на страницу входа в аккаунт -->
     {% if request.user.is_authenticated %}
@@ -41,26 +37,38 @@
   {% csrf_token %}
 
 
-<div id="div_id_login" class="control-group"> <label for="id_login" class="control-label requiredField">
-                Login<span class="asteriskField">*</span> </label>
-                <div class="controls"> <input name="login" placeholder="Username or e-mail" autofocus="autofocus" class="textinput textInput" required="" id="id_login" type="text">
-                </div>
-               </div>
-               <div id="div_id_password" class="control-group"> <label for="id_password" class="control-label requiredField">
-                Password<span class="asteriskField">*</span> </label> <div class="controls"> <input name="password" placeholder="Password" class="textinput textInput" required="" id="id_password" type="password">
-                </div>
-              </div>
-              <div id="div_id_remember" class="control-group">
-                <div class="controls"> <label for="id_remember" class="checkbox "> <input name="remember" class="checkboxinput" id="id_remember" type="checkbox">
-                        Remember Me
-                    </label>
-                  </div>
-                </div>
+<div id="div_id_login" class="control-group">
+   <label for="id_login" class="control-label requiredField">
+      Login<span class="asteriskField">*</span>
+   </label>
+   <div class="controls">
+     <input name="login" placeholder="Username or e-mail" autofocus="autofocus" class="textinput textInput" required="" id="id_login" type="text">
+   </div>
+</div>
+<div id="div_id_password" class="control-group">
+   <label for="id_password" class="control-label requiredField">Password<span class="asteriskField">*</span> </label>
+      <div class="controls">
+        <input name="password" placeholder="Password" class="textinput textInput" required="" id="id_password" type="password">
+      </div>
+</div>
+<div id="div_id_remember" class="control-group">
+  <div class="controls">
+    <label for="id_remember" class="checkbox ">
+      <input name="remember" class="checkboxinput" id="id_remember" type="checkbox">Remember Me</label>
+  </div>
+</div>
   <a class="btn btn-link button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
   <a class="btn btn-link button secondaryAction" href="{% url 'account_signup' %}">Signup?</a>
   <button class="btn btn-default primaryAction" type="submit">Sign In</button>
 </form>
 {% endif %}
   </div>
+
+  <div class="col-md-4">
+    <h2>lorem</h2>
+    <p>Lorem</p>
+    <p><button class="btn btn-default" href="#" role="button">View details</button></p>
+  </div>
+
 </div>
 {% endblock %}
