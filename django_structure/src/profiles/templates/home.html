@@ -1,4 +1,5 @@
-{% extends 'base.html' %}
+{% extends 'account/base.html' %}
+{% load staticfiles %}
 
 {% block styles %}
 <style media="screen">
@@ -18,5 +19,48 @@
 {% endblock %}
 
 {% block content %}
-<h1>Hello!</h1>
+<div class="row">
+  <div class="col-md-4">
+    <h2>lorem</h2>
+    <p>Lorem</p>
+    <p><button class="btn btn-default" href="#" role="button">View details</button></p>
+  </div>
+  <div class="col-md-4">
+    <h2>lorem</h2>
+    <p>Lorem</p>
+    <p><button class="btn btn-default" href="#" role="button">View details</button></p>
+  </div>
+  <div class="col-md-4">
+    <!-- Если пользователь в сети, будет отображено его имя на домашней странице. Иначе произойдет переход на страницу входа в аккаунт -->
+    {% if request.user.is_authenticated %}
+    <h3>Hello {{ request.user }}</h3>
+
+    {% else %}
+
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+
+
+<div id="div_id_login" class="control-group"> <label for="id_login" class="control-label requiredField">
+                Login<span class="asteriskField">*</span> </label>
+                <div class="controls"> <input name="login" placeholder="Username or e-mail" autofocus="autofocus" class="textinput textInput" required="" id="id_login" type="text">
+                </div>
+               </div>
+               <div id="div_id_password" class="control-group"> <label for="id_password" class="control-label requiredField">
+                Password<span class="asteriskField">*</span> </label> <div class="controls"> <input name="password" placeholder="Password" class="textinput textInput" required="" id="id_password" type="password">
+                </div>
+              </div>
+              <div id="div_id_remember" class="control-group">
+                <div class="controls"> <label for="id_remember" class="checkbox "> <input name="remember" class="checkboxinput" id="id_remember" type="checkbox">
+                        Remember Me
+                    </label>
+                  </div>
+                </div>
+  <a class="btn btn-link button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+  <a class="btn btn-link button secondaryAction" href="{% url 'account_signup' %}">Signup?</a>
+  <button class="btn btn-default primaryAction" type="submit">Sign In</button>
+</form>
+{% endif %}
+  </div>
+</div>
 {% endblock %}
