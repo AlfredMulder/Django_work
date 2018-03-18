@@ -47,7 +47,7 @@ class userStripe(models.Model):
             user_stripe_account.save()
 
     def profileCallback(sender, request, user, **kwargs):
-        userProfile, is_created = profile.objects.get_or_create(user = user)
+        userProfile, is_created = Profile.objects.get_or_create(user = user)
 
         # Если пользователь создан, появляется его профиль.
         if is_created:

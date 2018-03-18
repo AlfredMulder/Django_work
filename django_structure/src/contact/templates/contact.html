@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="row">
+<div class="row mx-auto">
   <div class="col-sm-6 col-sm-offset-3">
 
 
@@ -14,7 +14,7 @@
 {% if form %}
 <form class="" action="" method="post">{% csrf_token %}
   {{ form|crispy }}
-  <input type="submit" name="" value="submit form" class="btn btn-default">
+  <input type="submit" value="submit form" class="btn btn-default">
 </form>
 {% endif %}
 </div>

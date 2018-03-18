@@ -14,9 +14,9 @@ def contact(request):
         subject = 'Message from MYSITE.com'
         message = f'{comment} {name}'
         emailFrom = form.cleaned_data['email']
-        emailTo = [settings.email_host_user]
+        emailTo = [settings.EMAIL_HOST_USER]
         #Подключение стандартной django- функции для отправки сообщения на email- адрес.
-        send_mail(name, comment, subject, message, emailFrom, emailTo, fail_silently=True)
+        send_mail(subject, message, emailFrom, emailTo, fail_silently = True)
         title = "Thanks!"
         confirm_message = "Thanks for message. We will get right back to you."
         form = None

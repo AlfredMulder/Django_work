@@ -20,13 +20,13 @@
 
 {% block content %}
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-4 mx-auto">
     <h2>lorem</h2>
     <p>Lorem</p>
     <p><button class="btn btn-default" href="#" role="button">View details</button></p>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4 mx-auto">
     <!-- Если пользователь в сети, будет отображено его имя на домашней странице. Иначе произойдет переход на страницу входа в аккаунт -->
     {% if request.user.is_authenticated %}
     <h3>Hello {{ request.user }}</h3>
@@ -64,7 +64,7 @@
 {% endif %}
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4 mx-auto">
     <h2>lorem</h2>
     <p>Lorem</p>
     <p><button class="btn btn-default" href="#" role="button">View details</button></p>

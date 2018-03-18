@@ -40,35 +40,35 @@ $(function(){
 {% endblock %}
 
 {% block content %}
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3">
+<div class="row justify-content-center">
+<div class="col-sm-6 col-sm-offset-3 mx-auto">
 <form class="form" id="payment-form" method="post">{% csrf_token %}
   <span class="payment-errors"></span>
 
-  <div class="form-row">
+  <div class="form-row justify-content-center">
     <label>
       <span>Card number</span>
       <input class="form-control" type="text" size="20" data-stripe="number">
     </label>
   </div>
 
-  <div class="form-row">
+  <div class="form-row justify-content-center">
     <label>
       <span>Expiration (MM/YY)</span>
       <input type="text" size="2" data-stripe="exp_month">
     </label>
-    <span></span>
+    <span>/</span>
     <input type="text" size="2" data-stripe="exp_year">
   </div>
 
-  <div class="form-row">
+  <div class="form-row justify-content-center">
     <label>
       <span>CVC</span>
-      <input type="text" size="4" data-stripe="cvc">
+      <input type="text" size="2" data-stripe="cvc">
     </label>
   </div>
 
-<input class="btn btn-outline-success" type="submit" class="submit" value="submit payment">
+<input class="btn btn-default" type="submit" class="submit" value="Submit payment">
 </form>
 </div>
 </div>
