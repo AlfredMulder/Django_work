@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-#Дополнительный импорт файла настроек, статичных файлов.
+# Дополнительный импорт файла настроек, статичных файлов, приложений profile, contact, checkout:
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -32,7 +32,7 @@ urlpatterns = [
     path('contact/', contact_views.contact, name='contact'),
     path('accounts/', include('allauth.urls')),
 ]
-#Добавление статичных и медиа файлов при наличии соответствующих настроек.
+# Добавление статичных и медиа файлов при наличии соответствующих настроек:
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

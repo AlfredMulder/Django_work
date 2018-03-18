@@ -2,7 +2,7 @@
   {% block script %}
     <script type="text/javascript">
     //Установка публичного ключа:
-      Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+      Stripe.setPublishableKey('{{ publishKey }}');
       function stripeResponseHandler(status, response) {
         var $form = $('#payment-form');
 
@@ -26,9 +26,14 @@
 $(function(){
   var $form =$('#payment-form');
   $form.submit(function(event) {
+
+    //Отключение кнопки отправки воизбежание повторения нажатий:
     $form.find('.submit').prop('disabled', true);
 
+    //Запрос токена из Stripe:
     Stripe.card.createToken($form, stripeResponseHandler);
+
+    //Предотвращение отправки формы:
     return false;
   });
 });

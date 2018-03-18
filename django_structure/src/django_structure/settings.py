@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#Подключение email- хоста
+# Подключение email- хоста:
 email_host = 'smtp.gmail.com'
 email_host_user = 'your gmail email'
 email_host_password = 'your email password'
@@ -139,7 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-#Указание путей нахождения медиа и статических файлов.
+# Указание путей нахождения медиа и статических файлов:
 if DEBUG:
     MEDIA_URL = '/media/'
     STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "static-only")
@@ -150,7 +150,7 @@ if DEBUG:
 CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 SITE_ID = 1
-#Подключение настроек allauth.
+# Подключение настроек allauth:
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
@@ -179,3 +179,13 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = False
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_PASSWORD_MIN_LENGTH = 6
+
+# Настройки stripe:
+
+# Тестовые ключи
+STRIPE_PUBLISHABLE_KEY = 'pk_test_STX25ZyuZzolpkOxkGxcrBVu'
+STRIPE_SECRET_KEY = 'sk_test_8zJ5Wny2AkUEYLnBjNMbEjSO'
+
+# Live ключи
+#STRIPE_PUBLISHABLE_KEY = ''
+#STRIPE_SECRET_KEY = ''

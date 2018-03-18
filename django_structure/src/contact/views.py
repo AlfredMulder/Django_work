@@ -12,7 +12,7 @@ def contact(request):
         name = form.cleaned_data['name']
         comment = form.cleaned_data['comment']
         subject = 'Message from MYSITE.com'
-        message = '{0} {1}'.format(comment, name)
+        message = f'{comment} {name}'
         emailFrom = form.cleaned_data['email']
         emailTo = [settings.email_host_user]
         #Подключение стандартной django- функции для отправки сообщения на email- адрес.

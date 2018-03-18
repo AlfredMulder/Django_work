@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
-#Подключение функций для работы страниц: home, about, userProfile.
+# Подключение функций для работы страниц: home, about, userProfile:
 def home(request):
     context = {}
     template = 'home.html'
@@ -13,7 +13,7 @@ def about(request):
     template = 'about.html'
     return render(request, template, context)
 
-#Декоратор, требующий обязательного входа в профиль.
+# Декоратор, требующий обязательного входа в профиль:
 @login_required
 def userProfile(request):
     user = request.user
