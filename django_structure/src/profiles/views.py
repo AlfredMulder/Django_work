@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
+
 # Create your views here.
 # Подключение функций для работы страниц: home, about, userProfile:
 def home(request):

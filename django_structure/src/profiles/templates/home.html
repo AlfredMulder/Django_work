@@ -10,23 +10,18 @@
 {% endblock %}
 
 {% block jumbotron %}
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid" style="background-color:#5ccb28">
   <div class="container">
     <h1 class="display-3">Welcome!</h1>
     <p class="lead">"We believe that payments is a problem rooted in code, not finance. We obsessively seek out elegant, composable abstractions that enable robust, scalable, flexible integrations. Because we eliminate needless complexity and extraneous details, you can get up and running with Stripe in just a couple of minutes. "</p>
+    <a class="btn btn-default primaryAction" type="submit" href="https://stripe.com/" style="background-color:#dd2031">Learn more</a>
   </div>
 </div>
 {% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="col-md-4 mx-auto">
-    <h2>lorem</h2>
-    <p>Lorem</p>
-    <p><button class="btn btn-default" href="#" role="button">View details</button></p>
-  </div>
 
-  <div class="col-md-4 mx-auto">
+  <div class="col-sm-3 col-sm-offset-10 mx-auto">
     <!-- Если пользователь в сети, будет отображено его имя на домашней странице. Иначе произойдет переход на страницу входа в аккаунт -->
     {% if request.user.is_authenticated %}
     <h3>Hello {{ request.user }}</h3>
@@ -62,12 +57,6 @@
   <button class="btn btn-default primaryAction" type="submit">Sign In</button>
 </form>
 {% endif %}
-  </div>
-
-  <div class="col-md-4 mx-auto">
-    <h2>lorem</h2>
-    <p>Lorem</p>
-    <p><button class="btn btn-default" href="#" role="button">View details</button></p>
   </div>
 
 </div>
