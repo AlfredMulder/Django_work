@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'custom_user',
     'profiles',
     'contact',
     'crispy_forms',
@@ -51,6 +52,8 @@ INSTALLED_APPS = [
     'checkout',
     'stripe'
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,6 +82,14 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.request",
+)
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -164,6 +175,7 @@ ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = None
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "My subject: "
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 ACCOUNT_LOGOUT_ON_GET = False
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"

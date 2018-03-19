@@ -20,44 +20,207 @@
 {% endblock %}
 
 {% block content %}
+<div class="container marketing">
 
-  <div class="col-sm-3 col-sm-offset-10 mx-auto">
-    <!-- Если пользователь в сети, будет отображено его имя на домашней странице. Иначе произойдет переход на страницу входа в аккаунт -->
-    {% if request.user.is_authenticated %}
-    <h3>Hello {{ request.user }}</h3>
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2>Heading</h2>
+            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2>Heading</h2>
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            <h2>Heading</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
 
-    {% else %}
 
-    <form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- /END THE FEATURETTES -->
+
+      </div><!-- /.container -->
+{% if not request.user.is_authenticated %}
+<div class="col-sm-3 col-sm-offset-10 mx-auto">
+<form class="login" method="POST" action="{% url 'account_login' %}">
+{% csrf_token %}
 
 
 <div id="div_id_login" class="control-group">
-   <label for="id_login" class="control-label requiredField">
-      Login<span class="asteriskField">*</span>
-   </label>
-   <div class="controls">
-     <input name="login" placeholder="Username or e-mail" autofocus="autofocus" class="textinput textInput" required="" id="id_login" type="text">
-   </div>
+<label for="id_login" class="control-label requiredField">
+  Login<span class="asteriskField">*</span>
+</label>
+<div class="controls">
+ <input name="login" placeholder="Username or e-mail" autofocus="autofocus" class="textinput textInput" required="" id="id_login" type="text">
+</div>
 </div>
 <div id="div_id_password" class="control-group">
-   <label for="id_password" class="control-label requiredField">Password<span class="asteriskField">*</span> </label>
-      <div class="controls">
-        <input name="password" placeholder="Password" class="textinput textInput" required="" id="id_password" type="password">
-      </div>
+<label for="id_password" class="control-label requiredField">Password<span class="asteriskField">*</span> </label>
+  <div class="controls">
+    <input name="password" placeholder="Password" class="textinput textInput" required="" id="id_password" type="password">
+  </div>
 </div>
 <div id="div_id_remember" class="control-group">
-  <div class="controls">
-    <label for="id_remember" class="checkbox ">
-      <input name="remember" class="checkboxinput" id="id_remember" type="checkbox">Remember Me</label>
-  </div>
+<div class="controls">
+<label for="id_remember" class="checkbox ">
+  <input name="remember" class="checkboxinput" id="id_remember" type="checkbox">Remember Me</label>
 </div>
-  <a class="btn btn-link button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
-  <a class="btn btn-link button secondaryAction" href="{% url 'account_signup' %}">Signup?</a>
-  <button class="btn btn-default primaryAction" type="submit">Sign In</button>
+</div>
+<a class="btn btn-link button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+<a class="btn btn-link button secondaryAction" href="{% url 'account_signup' %}">Signup?</a>
+<button class="btn btn-default primaryAction" type="submit">Sign In</button>
 </form>
-{% endif %}
-  </div>
 
+
+</div>
+
+    {% else %}
+    <main role="main" class="container">
+
+      <div class="starter-template mx-auto">
+        <h1>Join us</h1>
+        <p class="lead">We're hope we will help you to improve your work.<br> There are some tarifes you can connect to your account:</p>
+      </div>
+
+    </main>
+    <div class="container">
+          <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Free</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>10 users included</li>
+                  <li>2 GB of storage</li>
+                  <li>Email support</li>
+                  <li>Help center access</li>
+                </ul>
+                <a href="{% url 'checkout' %}"><button type="submit" class="btn btn-lg btn-block btn-primary">
+                  Sign up for free</button></a>
+              </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Pro</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>20 users included</li>
+                  <li>10 GB of storage</li>
+                  <li>Priority email support</li>
+                  <li>Help center access</li>
+                </ul>
+                <a href="{% url 'checkout' %}"><button type="submit" class="btn btn-lg btn-block btn-primary">
+                  Get started</button></a>
+              </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Enterprise</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>30 users included</li>
+                  <li>15 GB of storage</li>
+                  <li>Phone and email support</li>
+                  <li>Help center access</li>
+                </ul>
+                <a href="{% url 'contact' %}"><button type="submit" class="btn btn-lg btn-block btn-primary">
+                  Contact us</button></a>
+              </div>
+            </div>
+          </div>
+
+          <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="row">
+              <div class="col-12 col-md">
+
+
+              </div>
+              <div class="col-6 col-md">
+                <h5>Features</h5>
+                <ul class="list-unstyled text-small">
+                  <li><a class="text-muted" href="#">Cool stuff</a></li>
+                  <li><a class="text-muted" href="#">Random feature</a></li>
+                  <li><a class="text-muted" href="#">Team feature</a></li>
+                  <li><a class="text-muted" href="#">Stuff for developers</a></li>
+                  <li><a class="text-muted" href="#">Another one</a></li>
+                  <li><a class="text-muted" href="#">Last time</a></li>
+                </ul>
+              </div>
+              <div class="col-6 col-md">
+                <h5>Resources</h5>
+                <ul class="list-unstyled text-small">
+                  <li><a class="text-muted" href="#">Resource</a></li>
+                  <li><a class="text-muted" href="#">Resource name</a></li>
+                  <li><a class="text-muted" href="#">Another resource</a></li>
+                  <li><a class="text-muted" href="#">Final resource</a></li>
+                </ul>
+              </div>
+              <div class="col-6 col-md">
+                <h5>About</h5>
+                <ul class="list-unstyled text-small">
+                  <li><a class="text-muted" href="#">Team</a></li>
+                  <li><a class="text-muted" href="#">Locations</a></li>
+                  <li><a class="text-muted" href="#">Privacy</a></li>
+                  <li><a class="text-muted" href="#">Terms</a></li>
+                </ul>
+              </div>
+            </div>
+          </footer>
+        </div>
+{% endif %}
 </div>
 {% endblock %}

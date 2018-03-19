@@ -2,7 +2,32 @@
 
 {% block content %}
 
-{{ user.username }}
-{{ user.email }}
+
+
+<div id="accordion">
+  <div class="card-header">
+    Name: {{ user.username }}
+  </div>
+  <div class="card-header">
+    City- {{ user.city }}
+  </div>
+  <div class="card-header">
+    Phone: {{ user.phone }}
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          About me:
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        {{ user.description }}
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
