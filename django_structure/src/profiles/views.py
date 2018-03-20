@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic import UpdateView
 from django.utils.decorators import method_decorator
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 from profiles.models import Profile
 

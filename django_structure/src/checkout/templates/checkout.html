@@ -42,7 +42,6 @@ $(function(){
 {% block content %}
 <div class="container">
   <div class="py-5 text-center">
-    <img class="d-block mx-auto mb-4" alt="" width="72" height="72">
     <h2>Checkout form</h2>
     <p class="lead">Fill all blanks below:</p>
   </div>
@@ -244,7 +243,7 @@ $(function(){
         </div>
         <hr class="mb-4">
 
-        <input class="btn btn-outline-success" type="submit" class="submit" value="Submit Payment">
+        <a href="{% url 'home' %}"><input class="btn btn-outline-success" type="submit" class="submit" value="Submit Payment"></a>
       </form>
     </div>
   </div>

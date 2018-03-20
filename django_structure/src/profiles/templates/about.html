@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>This site provides to simple payments and offers by users.
-  Also it can be using to send messages on any email adress.</h1>
+    <main role="main" class="container">
+      <div class="jumbotron">
+        <p class="lead">This site provides to simple payments and offers by users.
+          Also it can be using to send messages on any email adress.</p>
+          <h1>Have any questions?</h1>
+        <a class="btn btn-lg btn-primary" href="{% url 'contact' %}" role="button">Contact us &raquo;</a>
+      </div>
+    </main>
 {% endblock %}

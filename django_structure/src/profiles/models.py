@@ -11,9 +11,14 @@ stripe_api_key = settings.STRIPE_SECRET_KEY
 class Profile(models.Model):
     # Добавление новых полей: name, description, location, job:
     name = models.CharField(max_length=120)
+    last_name = models.CharField(max_length=120)
     description = models.TextField(default='description default text')
+    street = models.CharField(default='', max_length=100)
     city = models.CharField(default='', max_length=100)
+    state = models.CharField(default='', max_length=100)
     phone =  models.IntegerField(default=0)
+    website = models.CharField(max_length=120)
+    email = models.CharField(max_length=120)
     job = models.CharField(max_length=120, null=True)
     image = models.ImageField(upload_to="profile_image", height_field=800 , width_field=600)
     # Создание профиля пользователя:
