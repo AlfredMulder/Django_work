@@ -205,3 +205,4 @@ STRIPE_SECRET_KEY = 'sk_test_8zJ5Wny2AkUEYLnBjNMbEjSO'
 # Live ключи
 #STRIPE_PUBLISHABLE_KEY = ''
 #STRIPE_SECRET_KEY = ''
+#django_heroku.settings(locals())
