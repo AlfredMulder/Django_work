@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+<li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+<li class="breadcrumb-item active" aria-current="page">About</li>
+</ol>
+</nav>
     <main role="main" class="container">
       <div class="jumbotron">
         <p class="lead">This site provides to simple payments and offers by users.

@@ -9,6 +9,13 @@
 {% block content %}
 <div class="col-md-4 col-md-offset-4 mx-auto">
 
+  <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Log in</li>
+  </ol>
+  </nav>
+
 <h1>{% trans "Sign In" %}</h1>
 
 {% get_providers as socialaccount_providers %}
