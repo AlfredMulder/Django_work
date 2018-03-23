@@ -7,6 +7,11 @@ name = "pypi"
 gunicorn = "*"
 django-heroku = "*"
 whitenoise = "*"
+django-custom-user = "*"
+django-crispy-forms = "*"
+stripe = "*"
+django-allauth = "*"
+checkout = "*"
 
 [dev-packages]
 
