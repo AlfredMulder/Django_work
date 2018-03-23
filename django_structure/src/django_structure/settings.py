@@ -27,7 +27,7 @@ email_use_tls = True
 SECRET_KEY = 'n28-k4!h&@_b=-f78ok)dqwginob-jsv62n(rnmj5@%1$)a!l8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'boiling-wildwood-73678.herokuapp.com']
 
@@ -152,13 +152,13 @@ USE_TZ = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_URL = '/static/'
 # Указание путей нахождения медиа и статических файлов:
-
-MEDIA_URL = '/media/'
-#STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "static-only")
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "media")
-STATICFILES_DIRS = (
-    os.path.join(os.path.dirname(BASE_DIR), "static", "static"),
-)
+if DEBUG:
+    MEDIA_URL = '/media/'
+    #STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "static-only")
+    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "media")
+    STATICFILES_DIRS = (
+        os.path.join(os.path.dirname(BASE_DIR), "static", "static"),
+    )
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SITE_ID = 1
