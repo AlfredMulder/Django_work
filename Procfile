@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath djangostructure.src django_structure.wsgi
+web: gunicorn --pythonpath djangostructure.src django_structure.settings
