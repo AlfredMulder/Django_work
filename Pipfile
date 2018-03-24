@@ -12,6 +12,8 @@ django-crispy-forms = "*"
 stripe = "*"
 django-allauth = "*"
 checkout = "*"
+"psycopg2-binary" = "*"
+"psycopg2" = "*"
 
 [dev-packages]
 
