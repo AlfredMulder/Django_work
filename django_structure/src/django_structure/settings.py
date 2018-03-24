@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'stripe'
 ]
 
-
+SITE_ID=1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
