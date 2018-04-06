@@ -1,0 +1,234 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Глава 1- приложение Profile &#8212; Документация django_work 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Глава 2- приложение Checkout" href="2_chapter.html" />
+    <link rel="prev" title="Добро пожаловать в докуметацию проекта django_work" href="index.html" />
+
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+
+  <div class="section" id="profile">
+<h1>Глава 1- приложение Profile<a class="headerlink" href="#profile" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="id1">
+<h2><strong>Состав и краткое описание</strong><a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Данное приложение служит двум вещам:</p>
+<ul class="simple">
+<li>Объявление полей профиля пользователя для редактирование и обновление оных через «админку».</li>
+<li>Генерации уникального идентификатора службы Stripe.</li>
+</ul>
+<p>Состоит из следующих моделей(классов моделей):</p>
+<ol class="arabic simple">
+<li>Profile</li>
+<li>userStripe</li>
+</ol>
+<p>Имеет следующие представления(классы представлений):</p>
+<ol class="arabic simple">
+<li>Home</li>
+<li>About</li>
+<li>userProfile</li>
+</ol>
+<p>Включает в себя следующие шаблоны:</p>
+<ol class="arabic simple">
+<li>about.html - страница с описанием приложения.</li>
+<li>base.html - шаблон- основа для всех остальных страниц.</li>
+<li>footer.html - элемент страницы для указания года выпуска приложения, организации производителя и т.д..</li>
+<li>home.html - домашняя страница приложения.</li>
+<li>navbar.html - навигационная панель.</li>
+<li>profile.html - страница профиля пользователя.</li>
+</ol>
+<p>Разберем каждый класс отдельно.</p>
+</div>
+<div class="section" id="id2">
+<h2><strong>Класс Profile</strong><a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Состоит из следующих полей: name, description, job, street, city, state, phone, website, image, last name, email, user.</p>
+<p>Имеет только один метод: __unicode__, возвращающий имя пользователя в юникоде.</p>
+<p>Данные поля заполняются пользователями- администраторами приложения.</p>
+<p>Листинг:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Profile</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s1">&#39;description default text&#39;</span><span class="p">)</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">street</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">phone</span> <span class="o">=</span>  <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">website</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">width_field</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">height_field</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s2">&quot;profile_image&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;path/to/my/default/image.jpg&quot;</span><span class="p">)</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">AUTH_USER_MODEL</span><span class="p">,</span> <span class="n">on_delete</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">,</span> <span class="n">null</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">blank</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+<p><strong>Результат:</strong></p>
+<a class="reference external image-reference" href="_static/profile.png"><img alt="_images/profile.png" src="_images/profile.png" /></a>
+</div>
+<div class="section" id="userstripe">
+<h2><strong>Класс userStripe</strong><a class="headerlink" href="#userstripe" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Состоит из следующих полей: user, stripe_id.</p>
+<p>Методы:</p>
+<ul class="simple">
+<li>__unicode__ - то же самое, что и для класса profile, но рассчитанный в первую очередь на возвращение ID.</li>
+<li>stripeCallback - отвечает за создание Stripe ID и Stripe профиля пользователя.</li>
+<li>profileCallback - отвечает за изменения профиля пользователя и появление его в системе после регистрации.</li>
+</ul>
+<p>Данные поля заполняются пользователями- администраторами приложения.</p>
+<p>Листинг:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">userStripe</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">AUTH_USER_MODEL</span><span class="p">,</span> <span class="n">on_delete</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+    <span class="n">stripe_id</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">null</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">blank</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Если есть ID, преобразуй в его в строку:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stripe_id</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stripe_id</span><span class="p">)</span>
+        <span class="c1"># Иначе верни имя пользователя:</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span>
+
+    <span class="k">def</span> <span class="nf">stripeCallback</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">user_stripe_account</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">userStripe</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span><span class="p">)</span>
+
+        <span class="c1"># Если Stripe пользователя создан, появляется его профиль.</span>
+        <span class="k">if</span> <span class="n">created</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;created for </span><span class="si">{user.username}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="c1"># Если ID системы stripe не существует, то используй email пользователя для его создания:</span>
+        <span class="k">if</span> <span class="n">user_stripe_account</span><span class="o">.</span><span class="n">stripe_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">user_stripe_account</span><span class="o">.</span><span class="n">stripe_id</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">new_stripe_id</span> <span class="o">=</span> <span class="n">stripe</span><span class="o">.</span><span class="n">Customer</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">email</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+            <span class="n">user_stripe_account</span><span class="o">.</span><span class="n">stripe_id</span> <span class="o">=</span> <span class="n">new_stripe_id</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+            <span class="n">user_stripe_account</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">profileCallback</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">userProfile</span><span class="p">,</span> <span class="n">is_created</span> <span class="o">=</span> <span class="n">Profile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span><span class="p">)</span>
+
+        <span class="c1"># Если пользователь создан, появляется его профиль.</span>
+        <span class="k">if</span> <span class="n">is_created</span><span class="p">:</span>
+            <span class="n">userProfile</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span>
+            <span class="n">userProfile</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="n">user_logged_in</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">stripeCallback</span><span class="p">)</span>
+    <span class="n">user_signed_up</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">stripeCallback</span><span class="p">)</span>
+    <span class="n">user_signed_up</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">profileCallback</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2><strong>Представления</strong><a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Состоит из следующих полей: user, stripe_id.</p>
+<p>Методы:</p>
+<ul class="simple">
+<li>home - подключение начальной страницы приложения.</li>
+<li>about - подключение страницы описания приложения.</li>
+<li>userProfile - функция подключения страницы профиля, которая появляется в меню навигации только после входа в профиль.</li>
+</ul>
+<p>Листинг:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;home.html&#39;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">about</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;about.html&#39;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+<span class="c1"># Декоратор, требующий обязательного входа в профиль:</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">userProfile</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">}</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;profile.html&#39;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Домашняя страница:</strong></p>
+<a class="reference external image-reference" href="_static/home.png"><img alt="_images/home.png" src="_images/home.png" /></a>
+<p><strong>Страница описания:</strong></p>
+<a class="reference external image-reference" href="_static/about.png"><img alt="_images/about.png" src="_images/about.png" /></a>
+<p><strong>Страница профиля:</strong></p>
+<a class="reference external image-reference" href="_static/profile2.png"><img alt="_images/profile2.png" src="_images/profile2.png" /></a>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Оглавление</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Глава 1- приложение Profile</a><ul>
+<li><a class="reference internal" href="#id1"><strong>Состав и краткое описание</strong></a></li>
+<li><a class="reference internal" href="#id2"><strong>Класс Profile</strong></a></li>
+<li><a class="reference internal" href="#userstripe"><strong>Класс userStripe</strong></a></li>
+<li><a class="reference internal" href="#id3"><strong>Представления</strong></a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="предыдущая глава">Добро пожаловать в докуметацию проекта django_work</a></li>
+      <li>Next: <a href="2_chapter.html" title="следующая глава">Глава 2- приложение Checkout</a></li>
+  </ul></li>
+</ul>
+</div>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Искать" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Alfred.
+    
+    </div>
+
+
+
+
+  </body>
+</html>

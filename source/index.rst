@@ -11,11 +11,6 @@
 .. toctree::
    :maxdepth: 2
 
-
-
-Оглавление:
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   1_chapter.rst
+   2_chapter.rst
+   3_chapter.rst
